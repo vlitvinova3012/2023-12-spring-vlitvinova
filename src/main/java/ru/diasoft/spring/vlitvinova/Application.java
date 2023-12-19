@@ -1,4 +1,4 @@
-package ru.diasoft.springvlitvinova;
+package ru.diasoft.spring.vlitvinova;
 
 public class Application {
 
