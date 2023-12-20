@@ -1,6 +1,6 @@
 package ru.diasoft.spring.vlitvinova.dao;
 
-import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import ru.diasoft.spring.vlitvinova.dto.Question;
 import ru.diasoft.spring.vlitvinova.exception.ResourceNotFoundException;
 
@@ -12,10 +12,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
+@RequiredArgsConstructor
 public class QuestionDaoImpl implements QuestionDao {
 
-    private String file;
+    private final String file;
 
     @Override
     public List<Question> getQuestionList() {
@@ -30,8 +30,9 @@ public class QuestionDaoImpl implements QuestionDao {
                     .map(line -> line.split(";"))
                     .map(parts -> {
                         String question = parts[0];
-                        String[] answers = Arrays.copyOfRange(parts, 1, parts.length);
-                        return new Question(question, Arrays.asList(answers));
+                        String[] answers = Arrays.copyOfRange(parts, 1, 4);
+                        String[] rightAnswers = Arrays.copyOfRange(parts, 4, parts.length);
+                        return new Question(question, Arrays.asList(answers), Arrays.asList(rightAnswers));
                     })
                     .collect(Collectors.toList());
         } catch (IOException e) {

@@ -12,4 +12,5 @@ import java.util.List;
 public class Question {
     String questionFromFile;
     List<String> answers;
+    List<String> rightAnswers;
 }
