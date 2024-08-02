@@ -11,6 +11,7 @@ public class Application {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         ProcessAnswerService processAnswerService = context.getBean(ProcessAnswerService.class);
         processAnswerService.processAnswers();
+
     }
 
 }
